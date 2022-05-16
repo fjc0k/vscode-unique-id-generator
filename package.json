@@ -1,22 +1,22 @@
 {
-  "name": "uuid-generator",
-  "displayName": "UUID Generator",
-  "description": "Generate a UUID",
-  "version": "0.0.5",
+  "name": "generate-unique-id",
+  "displayName": "Unique ID (UUID, CUID, NanoID) Generator",
+  "description": "Generate a Unique ID",
+  "version": "1.0.0",
   "license": "MIT",
-  "publisher": "netcorext",
+  "publisher": "JayFong",
   "author": {
-    "name": "Aren Chen",
-    "email": "gucci313031@gmail.com"
+    "name": "Jay Fong",
+    "email": "fjc0k@gmail.com"
   },
-  "homepage": "https://github.com/arenchen/vscode-uuid-generator",
+  "homepage": "https://github.com/fjc0k/vscode-unique-id-generator",
   "icon": "images/icon.png",
   "bugs": {
-    "url": "https://github.com/arenchen/vscode-uuid-generator/issues"
+    "url": "https://github.com/fjc0k/vscode-unique-id-generator/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arenchen/vscode-uuid-generator.git"
+    "url": "https://github.com/fjc0k/vscode-unique-id-generator.git"
   },
   "engines": {
     "vscode": "^1.30.0"
@@ -27,12 +27,19 @@
   ],
   "keywords": [
     "GUID",
-    "UUID"
+    "UUID",
+    "CUID",
+    "NanoID",
+    "UniqueID"
   ],
-  "main": "./out/src/extension.js",
+  "main": "./out/main.js",
   "activationEvents": [
     "onCommand:uuid.generate",
-    "onCommand:uuid.repeat"
+    "onCommand:uuid.repeat",
+    "onCommand:cuid.generate",
+    "onCommand:cuid.repeat",
+    "onCommand:nanoid.generate",
+    "onCommand:nanoid.repeat"
   ],
   "contributes": {
     "commands": [
@@ -43,6 +50,22 @@
       {
         "command": "uuid.repeat",
         "title": "Repeat UUID At Cursor"
+      },
+      {
+        "command": "cuid.generate",
+        "title": "Generate CUID At Cursor"
+      },
+      {
+        "command": "cuid.repeat",
+        "title": "Repeat CUID At Cursor"
+      },
+      {
+        "command": "nanoid.generate",
+        "title": "Generate NanoID At Cursor"
+      },
+      {
+        "command": "nanoid.repeat",
+        "title": "Repeat NanoID At Cursor"
       }
     ],
     "menus": {
@@ -50,20 +73,40 @@
         {
           "when": "editorTextFocus",
           "command": "uuid.generate",
-          "group": "uuid"
+          "group": "uniqueId"
         },
         {
           "when": "editorHasMultipleSelections",
           "command": "uuid.repeat",
-          "group": "uuid"
+          "group": "uniqueId"
+        },
+        {
+          "when": "editorTextFocus",
+          "command": "cuid.generate",
+          "group": "uniqueId"
+        },
+        {
+          "when": "editorHasMultipleSelections",
+          "command": "cuid.repeat",
+          "group": "uniqueId"
+        },
+        {
+          "when": "editorTextFocus",
+          "command": "nanoid.generate",
+          "group": "uniqueId"
+        },
+        {
+          "when": "editorHasMultipleSelections",
+          "command": "nanoid.repeat",
+          "group": "uniqueId"
         }
       ]
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "vscode:prepublish": "npm run esbuild",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild": "npm run esbuild-base -- --minify",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "test-compile": "tsc -p ./"
   },
@@ -71,13 +114,13 @@
     "@types/mocha": "^9.1.0",
     "@types/node": "^17.0.10",
     "esbuild": "^0.14.12",
+    "prettier": "^2.6.2",
     "tsc-watch": "^4.6.0",
-    "tslint": "^6.1.3",
     "typescript": "^4.5.5",
-    "vscode": "^1.1.37"
-  },
-  "dependencies": {
+    "vscode": "^1.1.37",
     "@types/uuid": "^8.3.4",
+    "cuid": "^2.1.8",
+    "nanoid": "^3.3.4",
     "uuid": "^8.3.2"
   }
 }
