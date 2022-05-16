@@ -2,7 +2,7 @@
   "name": "generate-unique-id",
   "displayName": "Unique ID (UUID, CUID, NanoID) Generator",
   "description": "Generate a Unique ID",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "publisher": "JayFong",
   "author": {

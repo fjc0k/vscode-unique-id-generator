@@ -2,7 +2,7 @@
 
 ## Simple to use
 
-![](images/uuid.gif)
+![](images/usage.gif)
 
 ## Source
 
